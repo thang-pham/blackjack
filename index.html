@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'/>
+
+    <!-- Use for extra head tags -->
+    <title>Blackjack</title>
+
+    <!-- jQuery UI core CSS -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap-3.3.6/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="static/blackjack.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Rubik'
+          rel='stylesheet' type='text/css'>
+
+    <!-- JavaScript libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+
+    <script src="lib/file_saver.js"></script>
+    <script src="lib/exceptions.js"></script>
+    <script src="lib/hand.js"></script>
+    <script src="lib/deck.js"></script>
+    <script src="lib/player.js"></script>
+    <script src="lib/dealer.js"></script>
+    <script src="lib/game.js"></script>
+</head>
+
+<body>
+    <h3>Blackjack</h3>
+    <div id="info" class="alert" role="alert" style="width: 800px;"></div>
+
+    <div id="state" class="alert alert-info" role="alert" style="width: 800px;">
+        Click New to start your game!
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <button id="new-game" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-tower" aria-hidden="true"></span> New</button>
+            <button id="save-game" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Save</button>
+            <button id="load" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> Load</button>
+            <button id="next-round" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Next</button>
+        </div>
+
+        <input id="upload-file" type="file" style="display: none;"/>
+    </div>
+
+    <!-- Show dealer -->
+    <div class="row" id="dealers" style="margin: 20px 0px;"></div>
+
+    <!-- Show each player -->
+    <div class="row" id="players" style="margin: 20px 0px;"></div>
+
+    <!-- Show player actions (hit, stay, double down, split, or surrender) -->
+    <div class="row" id="player-cash" style="margin: 20px 0px; width: 340px;">
+        <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input id="bet" type="number" class="form-control" placeholder="Your bet" aria-describedby="bet">
+
+            <span class="input-group-addon">$</span>
+            <input id="bank" type="number" class="form-control" placeholder="Bank account" aria-describedby="bank">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <button id="hit" type="button" class="player-btn btn btn-primary"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Hit</button>
+            <button id="double" type="button" class="player-btn btn btn-primary"><span class="glyphicon glyphicon glyphicon-forward" aria-hidden="true"></span> Double</button>
+            <button id="split" type="button" class="player-btn btn btn-primary"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span> Split</button>
+            <button id="stay" type="button" class="player-btn btn btn-success"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Stand</button>
+        </div>
+    </div>
+
+    <!-- Just for debugging purposes -->
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6" id="debug"></div>
+    </div>
+</body>
+
+<!-- Hook up the game controller -->
+<script src="lib/controller.js"></script>
+</html>
